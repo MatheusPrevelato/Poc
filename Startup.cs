@@ -26,6 +26,7 @@ namespace Poc1
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddScoped<Conexao>();
             services.AddScoped<IApontamentoRepositorio, ApontamentoRepositorio>();
         }
 

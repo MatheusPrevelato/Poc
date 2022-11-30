@@ -33,7 +33,7 @@ namespace Poc1.Controllers
             try
             {
                 _apontamentoRepositorio.Adicionar(apontamento);
-                return View("Index");
+                return RedirectToAction("Adicionar");
                 
                 //if (ModelState.IsValid)
                 //{
