@@ -34,14 +34,6 @@ namespace Poc1.Controllers
             {
                 _apontamentoRepositorio.Adicionar(apontamento);
                 return RedirectToAction("Adicionar");
-                
-                //if (ModelState.IsValid)
-                //{
-                //    _apontamentoRepositorio.Adicionar(apontamento);
-                //    TempData["MensagemSucesso"] = "Apontamento realizado com sucesso";
-                //    return RedirectToAction("Criar");
-                //}
-                //return View("Index");
             }
             catch (Exception e)
             {

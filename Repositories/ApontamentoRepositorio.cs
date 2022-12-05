@@ -10,6 +10,7 @@ namespace Poc1.Repositories
     {
         private readonly Conexao _conexao;
 
+
         public ApontamentoRepositorio(Conexao conexao)
         {
             _conexao = conexao;
