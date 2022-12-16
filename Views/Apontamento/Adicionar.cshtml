@@ -29,7 +29,7 @@
 
     <div class="form-group">
         <label for="nome" class="form-label">Stream</label>
-        <select asp-for="@Model.StreamId" asp-items="@ViewBag.Stream" class=" form-control"></select>
+        <select asp-for="@Model.StreamId" asp-items="@ViewBag.Streams" class="form-control"></select>
         @Html.ValidationMessageFor(x => x.StreamId)
     </div>
 

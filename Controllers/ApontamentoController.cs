@@ -27,10 +27,10 @@ namespace Poc1.Controllers
 
         public IActionResult Adicionar()
         {
-            ViewBag.Streams = StreamServico.GetStream().Select(c => new SelectListItem() { Text = c.Nome, Value = c.Id.ToString() }).ToList();
-            ViewBag.Atividades = AtividadeServico.GetAtividade().Select(c => new SelectListItem() { Text = c.Nome, Value = c.Id.ToString() }).ToList();
-            ViewBag.Fases = FaseServico.GetFase().Select(c => new SelectListItem() { Text = c.Nome, Value = c.Id.ToString() }).ToList();
-            ViewBag.Horas = HoraServico.GetHora().Select(c => new SelectListItem() { Text = c.Quantidade, Value = c.Id.ToString() }).ToList();
+            ViewBag.Streams = StreamServico.GetStream().Select(s => new SelectListItem() { Text = s.Nome, Value = s.Id.ToString() }).ToList();
+            ViewBag.Atividades = AtividadeServico.GetAtividade().Select(a => new SelectListItem() { Text = a.Nome, Value = a.Id.ToString() }).ToList();
+            ViewBag.Fases = FaseServico.GetFase().Select(f => new SelectListItem() { Text = f.Nome, Value = f.Id.ToString() }).ToList();
+            ViewBag.Horas = HoraServico.GetHora().Select(h => new SelectListItem() { Text = h.Quantidade, Value = h.Id.ToString() }).ToList();
             return View();
         }
 
