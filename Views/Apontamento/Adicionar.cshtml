@@ -12,66 +12,50 @@
 
 <br />
 
-<form asp-controller="Apontamento" asp-action="Adicionar" method="post">
+@if (TempData["MensagemSucesso"] != null)
+{
+    <div class="alert alert-success" role="alert">
+        @TempData["MensagemSucesso"]
+    </div>
+}
+
+<form asp-controller="Apontamento" asp-action="Adicionar" method="post" class="style">
+    
     <div class="form-group">
         <label for="nome">Data</label>
-        <input type="date" asp-for="Dia" class="form-control" placeholder="" dateFormat="mm-dd-yyyy" style="width:400px">
+        <input type="date" asp-for="@Model.Dia" class="form-control" dateFormat="mm-dd-yyyy">
         @Html.ValidationMessageFor(x => x.Dia)
     </div>
 
     <div class="form-group">
         <label for="nome" class="form-label">Stream</label>
-        <select asp-for="Stream" class=" form-control" style="width:400px">
-            <option>----- Selecione -----</option>
-            <option>ABSENCE</option>
-            <option>APPS</option>
-        </select>
-        @Html.ValidationMessageFor(x => x.Stream)
+        <select asp-for="@Model.StreamId" asp-items="@ViewBag.Stream" class=" form-control"></select>
+        @Html.ValidationMessageFor(x => x.StreamId)
     </div>
 
     <div class="form-group">
         <label for="nome" class="form-label">Atividade</label>
-        <select asp-for="Atividade" class="form-control" style="width:400px">
-            <option>----- Selecione -----</option>
-            <option>Biomarkers</option>
-            <option>Evendor</option>
-            <option>Sistema de apontamentos</option>
-        </select>
-        @Html.ValidationMessageFor(x => x.Atividade)
+        <select asp-for="AtividadeId" asp-items="@ViewBag.Atividades" class="form-control"></select>
+        @Html.ValidationMessageFor(x => x.AtividadeId)
     </div>
 
     <div class="form-group">
         <label for="nome" class="form-label">Fase</label>
-        <select asp-for="Fase" class="form-control"style="width:400px">
-            <option>----- Selecione -----</option>
-            <option>To Do</option>
-            <option>Doing</option>
-            <option>Done</option>
-        </select>
-        @Html.ValidationMessageFor(x => x.Atividade)
+        <select asp-for="FaseId" asp-items="@ViewBag.Fases" class="form-control"></select>
+        @Html.ValidationMessageFor(x => x.FaseId)
     </div>
 
     <div class="form-group">
         <label for="nome" class="form-label">Horas</label>
-        <select asp-for="Horas" class="form-control" style="width:400px">
-            <option>----- Selecione -----</option>
-            <option value="1">01:00</option>
-            <option value="2">02:00</option>
-            <option value="3">03:00</option>
-            <option value="4">04:00</option>
-            <option value="5">05:00</option>
-            <option value="6">06:00</option>
-            <option value="7">07:00</option>
-            <option value="8">08:00</option>
-        </select>
-        @Html.ValidationMessageFor(x => x.Atividade)
+        <select asp-for="Horas" asp-items="@ViewBag.Horas" class="form-control"></select>
+        @Html.ValidationMessageFor(x => x.Horas)
     </div>
 
     <div class="form-group">
         <label for="nome" class="form-label">Observações</label>
-        <textarea asp-for="Observacoes" class="form-control" style="width:400px" placeholder="50-300 caracteres">Observações</textarea>
+        <textarea asp-for="Observacoes" class="form-control" placeholder="50-300 caracteres">Observações</textarea>
         @Html.ValidationMessageFor(x=> x.Observacoes)
     </div>
 
-    <button type="submit" class="btn btn-primary btn-block" style="width:400px">Adicionar</button>
+    <button type="submit" class="btn btn-primary btn-block">Adicionar</button>
 </form>

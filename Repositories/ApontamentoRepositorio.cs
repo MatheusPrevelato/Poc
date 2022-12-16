@@ -1,8 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis;
 using Microsoft.Data.SqlClient;
 using Poc1.Data;
 using Poc1.Models;
 using System;
+using System.Collections.Generic;
+using System.IO;
 
 namespace Poc1.Repositories
 {
@@ -16,6 +19,8 @@ namespace Poc1.Repositories
             _conexao = conexao;
         }
 
+        // Metodo BuscarPorId
+        
         public void Adicionar(ApontamentoModel apontamento)
         {
             SqlConnection conn = _conexao.Executar();
@@ -24,14 +29,14 @@ namespace Poc1.Repositories
             {
                 SqlCommand sqlCommand = new SqlCommand();
                 sqlCommand.Connection = conn;
-                sqlCommand.CommandText = "INSERT INTO Apontamentos (Dia, Stream, Atividade, Fase, Horas, Observacoes)" +
-                    "VALUES (@Dia, @Stream, @Atividade, @Fase, @Horas, @Observacoes)";
+                sqlCommand.CommandText = "INSERT INTO Apontamentos (Dia, StreamId, AtividadeId, FaseId, Horas, Observacoes)" +
+                    "VALUES (@Dia, @StreamId, @AtividadeId, @FaseId, @Horas, @Observacoes)";
 
                 //sqlCommand.Parameters.AddWithValue("@Id", apontamento.Id);
                 sqlCommand.Parameters.AddWithValue("@Dia", apontamento.Dia);
-                sqlCommand.Parameters.AddWithValue("@Stream", apontamento.Stream);
-                sqlCommand.Parameters.AddWithValue("@Atividade", apontamento.Atividade);
-                sqlCommand.Parameters.AddWithValue("@Fase", apontamento.Fase);
+                sqlCommand.Parameters.AddWithValue("@StreamId", apontamento.StreamId);
+                sqlCommand.Parameters.AddWithValue("@AtividadeId", apontamento.AtividadeId);
+                sqlCommand.Parameters.AddWithValue("@FaseId", apontamento.FaseId);
                 sqlCommand.Parameters.AddWithValue("@Horas", apontamento.Horas);
                 sqlCommand.Parameters.AddWithValue("@Observacoes", apontamento.Observacoes);
 
