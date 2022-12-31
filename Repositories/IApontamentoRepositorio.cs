@@ -1,9 +1,9 @@
-﻿using Poc1.Models;
+﻿using Poc1.Entidades;
 
 namespace Poc1.Repositories
 {
     public interface IApontamentoRepositorio
     {
-        void Adicionar(ApontamentoModel apontamento);
+        void Adicionar(Apontamento apontamento);
     }
 }

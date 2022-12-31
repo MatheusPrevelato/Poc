@@ -1,6 +1,6 @@
-﻿namespace Poc1.Models
+﻿namespace Poc1.Entidades
 {
-    public class HoraModel
+    public class Hora
     {
         public int Id { get; set; }
         public string Quantidade { get; set; }

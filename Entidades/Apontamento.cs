@@ -2,22 +2,21 @@
 using System;
 using System.Collections.Generic;
 
-namespace Poc1.Models
+namespace Poc1.Entidades
 {
-    public class ApontamentoModel
+    public class Apontamento
     {
-        //[Key]
         public int Id { get; set; }
-        public DateTime Dia { get; set; }
+        public DateTime Data { get; set; }
         public int StreamId { get; set; }
         // relacionamento entre as tabelas Apontamentos e Streams (1 para muitos)
-        public List<StreamModel> Streams { get; set; }
-        
+        public List<Stream> Streams { get; set; }
+
         public int AtividadeId { get; set; }
-        
+
         public string FaseId { get; set; }
         // relacionamento entre as tabelas Apontamentos e Fases (1 para muitos)
-        public List<FaseModel> Fases { get; set; }
+        public List<Fase> Fases { get; set; }
         public int Horas { get; set; }
         public string Observacoes { get; set; }
 

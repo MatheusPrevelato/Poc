@@ -4,7 +4,7 @@ using Microsoft.CodeAnalysis;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Protocols;
 using Poc1.Data;
-using Poc1.Models;
+using Poc1.Entidades;
 using Poc1.Repositories;
 using Poc1.Services;
 using System;
@@ -14,32 +14,29 @@ namespace Poc1.Controllers
 {
     public class ApontamentoController : Controller
     {
-        private readonly IApontamentoRepositorio _apontamentoRepositorio;
+        private readonly ApontamentoServico _apontamentoServico;
 
-        public ApontamentoController (IApontamentoRepositorio apontamentoRepositorio)
+        public ApontamentoController (ApontamentoServico apontamentoServico)
         {
-            _apontamentoRepositorio = apontamentoRepositorio;
+            _apontamentoServico = apontamentoServico;
         }
         public IActionResult Index()
         {   
             return View();
         }
 
+        [HttpGet]
         public IActionResult Adicionar()
         {
-            ViewBag.Streams = StreamServico.GetStream().Select(s => new SelectListItem() { Text = s.Nome, Value = s.Id.ToString() }).ToList();
-            ViewBag.Atividades = AtividadeServico.GetAtividade().Select(a => new SelectListItem() { Text = a.Nome, Value = a.Id.ToString() }).ToList();
-            ViewBag.Fases = FaseServico.GetFase().Select(f => new SelectListItem() { Text = f.Nome, Value = f.Id.ToString() }).ToList();
-            ViewBag.Horas = HoraServico.GetHora().Select(h => new SelectListItem() { Text = h.Quantidade, Value = h.Id.ToString() }).ToList();
-            return View();
+            return null;
         }
 
         [HttpPost]
-        public IActionResult Adicionar(ApontamentoModel apontamento)
+        public IActionResult Adicionar(Apontamento apontamento)
         {         
             try
             {
-                _apontamentoRepositorio.Adicionar(apontamento);
+                _apontamentoServico.Adicionar(apontamento);
                 TempData["MensagemSucesso"] = "Apontamento realizado com sucesso";
                 return RedirectToAction("Adicionar");
             }

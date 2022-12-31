@@ -1,4 +1,5 @@
-﻿using Poc1.Models;
+﻿using Poc1.Entidades;
+using Poc1.Repositories;
 using System.Collections.Generic;
 
 namespace Poc1.Services
@@ -6,15 +7,11 @@ namespace Poc1.Services
     // Servico que fornece uma lista de fases
     public class FaseServico
     {
-        public static List<FaseModel> GetFase()
+        private readonly FaseRepositorio _repositorio;
+
+        public FaseServico(FaseRepositorio repositorio)
         {
-            var listaFases = new List<FaseModel>()
-            {
-                new FaseModel(){Id=1, Nome = "To do"},
-                new FaseModel(){Id=2, Nome = "Doing"},
-                new FaseModel(){Id=3, Nome = "Done"}
-            };
-            return listaFases;
+            _repositorio = repositorio;
         }
     }
 }

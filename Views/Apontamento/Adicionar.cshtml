@@ -1,4 +1,5 @@
-﻿@model ApontamentoModel
+﻿@using Poc1.Entidades
+@model ApontamentoViewModel
 
 @{
     ViewData["Title"] = "Inserir Apontamentos";
@@ -23,8 +24,8 @@
     
     <div class="form-group">
         <label for="nome">Data</label>
-        <input type="date" asp-for="@Model.Dia" class="form-control" dateFormat="mm-dd-yyyy">
-        @Html.ValidationMessageFor(x => x.Dia)
+        <input type="date" asp-for="@Model.Data" class="form-control" dateFormat="mm-dd-yyyy">
+        @Html.ValidationMessageFor(x => x.Data)
     </div>
 
     <div class="form-group">

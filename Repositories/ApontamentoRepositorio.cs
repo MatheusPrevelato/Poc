@@ -2,7 +2,7 @@
 using Microsoft.CodeAnalysis;
 using Microsoft.Data.SqlClient;
 using Poc1.Data;
-using Poc1.Models;
+using Poc1.Entidades;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -21,7 +21,7 @@ namespace Poc1.Repositories
 
         // Metodo BuscarPorId
         
-        public void Adicionar(ApontamentoModel apontamento)
+        public void Adicionar(Apontamento apontamento)
         {
             SqlConnection conn = _conexao.Executar();
 
@@ -33,7 +33,7 @@ namespace Poc1.Repositories
                     "VALUES (@Dia, @StreamId, @AtividadeId, @FaseId, @Horas, @Observacoes)";
 
                 //sqlCommand.Parameters.AddWithValue("@Id", apontamento.Id);
-                sqlCommand.Parameters.AddWithValue("@Dia", apontamento.Dia);
+                sqlCommand.Parameters.AddWithValue("@Dia", apontamento.Data);
                 sqlCommand.Parameters.AddWithValue("@StreamId", apontamento.StreamId);
                 sqlCommand.Parameters.AddWithValue("@AtividadeId", apontamento.AtividadeId);
                 sqlCommand.Parameters.AddWithValue("@FaseId", apontamento.FaseId);
