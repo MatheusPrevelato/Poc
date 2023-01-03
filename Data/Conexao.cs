@@ -7,7 +7,7 @@ namespace Poc1.Data
     {
         public SqlConnection Executar()
         {
-            string connString = "Server=DESKTOP-SL53TN7;Database=Poc1_Database;User Id=sa; Password=Bancodedados*";
+            string connString = "Data Source=DESKTOP-11JUK34;Initial Catalog=Poc1_Database;Trusted_Connection=True;";
             try
             {
                 SqlConnection conn = new(connString);

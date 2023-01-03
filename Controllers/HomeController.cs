@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Poc1.Models;
+using Poc1.Services;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -11,12 +12,31 @@ namespace Poc1.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly ApontamentoServico _apontamentoServico;
+        private readonly StreamServico _streamServico;
+        private readonly AtividadeServico _atividadeServico;
+        private readonly FaseServico _faseServico;
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+
+        public HomeController(
+            ApontamentoServico apontamentoServico,
+            StreamServico streamServico,
+            AtividadeServico atividadeServico,
+            FaseServico faseServico,
+            ILogger<HomeController> logger)
         {
+            _apontamentoServico = apontamentoServico;
+            _streamServico = streamServico;
+            _atividadeServico = atividadeServico;
+            _faseServico = faseServico;
             _logger = logger;
         }
+
+        //public HomeController(ILogger<HomeController> logger)
+        //{
+        //    _logger = logger;
+        //}
 
         public IActionResult Index()
         {

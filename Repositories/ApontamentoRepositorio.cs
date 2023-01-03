@@ -3,6 +3,7 @@ using Microsoft.CodeAnalysis;
 using Microsoft.Data.SqlClient;
 using Poc1.Data;
 using Poc1.Entidades;
+using Poc1.Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -20,7 +21,7 @@ namespace Poc1.Repositories
         }
 
         // Metodo BuscarPorId
-        
+
         public void Adicionar(Apontamento apontamento)
         {
             SqlConnection conn = _conexao.Executar();
@@ -47,6 +48,42 @@ namespace Poc1.Repositories
                 throw new Exception("Erro: " + e.Message);
             }
             conn.Close();
+        }
+
+        public IEnumerable<Apontamento> BuscarPorId(int id)
+        {
+            SqlConnection conn = _conexao.Executar();
+            List<Apontamento> listaApontamentos = new List<Apontamento>();
+
+            try
+            {
+                string query = "SELECT * FROM Apontamentos INNER JOIN Streams ON Apontamentos.StreamId = Streams.StreamId " +
+                    "INNER JOIN Fases ON Apontamentos.FaseId = Fases.FaseId WHERE Apontamentos.Id = " + id;
+
+                SqlCommand cmd = new(query,conn);
+                SqlDataReader dataReader = cmd.ExecuteReader();
+
+                while (dataReader.Read())
+                {
+                    Apontamento apontamento = new()
+                    {
+                        Id = int.Parse(dataReader["Id"].ToString()),
+                        Data = DateTime.Parse(dataReader["Dia"].ToString()),
+                        StreamId = int.Parse(dataReader["StreamId"].ToString()),
+                        AtividadeId = int.Parse(dataReader["AtividadeId"].ToString()),
+                        FaseId = int.Parse(dataReader["FaseId"].ToString()),
+                        Horas = int.Parse(dataReader["Horas"].ToString()),
+                        Observacoes = dataReader["Observacoes"].ToString()
+                    };
+                    listaApontamentos.Add(apontamento);
+                }
+            }
+            catch(Exception e)
+            {
+                throw new Exception("Erro: " + e.Message);
+            }
+            conn.Close();
+            return listaApontamentos;
         }
     }
 }

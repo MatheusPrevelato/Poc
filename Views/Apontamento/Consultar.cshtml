@@ -1,0 +1,43 @@
+﻿@using Poc1.Entidades
+@model IEnumerable<Poc1.Entidades.Apontamento>
+
+@{
+    ViewData["Title"] = "Apontamentos";
+}
+
+<div class="text-center">
+    @*<div class="d-grip gap-2 d-md-flex justify-content-md-start">
+        <a class="btn btn-primary" role="button" asp-controller="Apontamento" asp-action="Adicionar">Adicionar Apontamento</a>
+    </div>*@
+
+    <h1 class="display-4">@ViewData["Title"]</h1>
+
+    <table class="table" id="table-apontamentos">
+        <thead>
+            <tr>
+                <th scope="col" style="text-align:center">Id</th>
+                <th scope="col" style="text-align:center">Stream</th>
+                <th scope="col" style="text-align:center">Atividade</th>
+                <th scope="col" style="text-align:center">Fase</th>
+                <th scope="col" style="text-align:center">Horas</th>
+                <th scope="col" style="text-align:center">Observações</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Any())
+            {
+                @foreach (var apontamento in Model)
+                {
+                    <tr>
+                        <td>@apontamento.Id</td>
+                        <td>@apontamento.Stream.Nome</td>
+                        <td>@apontamento.Atividade.Nome</td>
+                        <td>@apontamento.Fase.Nome</td>
+                        <td>@apontamento.Horas</td>
+                        <td>@apontamento.Observacoes</td>
+                    </tr>
+                }
+            }        
+        </tbody>
+    </table>
+</div>

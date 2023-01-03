@@ -6,6 +6,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Poc1.Data;
 using Poc1.Repositories;
+using Poc1.Repositories.Interfaces;
+using Poc1.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,8 +28,21 @@ namespace Poc1
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            
             services.AddScoped<Conexao>();
+
+            services.AddScoped<ApontamentoServico>();
             services.AddScoped<IApontamentoRepositorio, ApontamentoRepositorio>();
+            
+            services.AddScoped<StreamServico>();
+            services.AddScoped<IStreamRepositorio, StreamRepositorio>();
+           
+            services.AddScoped<AtividadeServico>();
+            services.AddScoped<IAtividadeRepositorio, AtividadeRepositorio>();
+           
+            services.AddScoped<FaseServico>();
+            services.AddScoped<IFaseRepositorio, FaseRepositorio>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

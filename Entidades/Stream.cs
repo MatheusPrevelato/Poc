@@ -8,5 +8,17 @@ namespace Poc1.Entidades
         public string Nome { get; set; }
 
         public int AtividadeId { get; set; }
+
+        public Stream()
+        {
+
+        }
+
+        public Stream(int id, string nome, int atividadeId)
+        {
+            Id = id;
+            Nome = nome;
+            AtividadeId = atividadeId;
+        }
     }
 }
